@@ -1,0 +1,226 @@
+\documentclass[10pt]{amsart}
+\usepackage{tikz,array, verbatim}
+\usepackage{amsfonts, amsmath, latexsym, epsfig, caption}
+\usepackage{amssymb, color}
+%\newcommand{\todo}[1]{{\color{red}#1}}
+\usepackage{epsf}
+%\usepackage{cite}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+        \headheight=7pt
+        \textheight=574pt
+%        \textwidth=432pt
+        \textwidth=400pt
+        \topmargin=14pt
+        \oddsidemargin=18pt
+        \evensidemargin=18pt
+%\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\AGL}{AGL}
+%\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\tconv}{conv}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\tcvp}{cvp}
+\DeclareMathOperator{\tCVP}{CVP}
+\DeclareMathOperator{\tvert}{vert}
+\DeclareMathOperator{\Del}{Del}
+\DeclareMathOperator{\parity}{Parity}
+\include{Includes/operators}
+\include{Includes/fonts}
+
+\title{Einheiten Quadratischer Formen: Units of Quadratic Forms}
+
+\def\QuotS#1#2{\leavevmode\kern-.0em\raise.2ex\hbox{$#1$}\kern-.1em/\kern-.1em\lower.25ex\hbox{$#2$}}
+
+
+%\usepackage{vmargin}
+%\setpapersize{custom}{21cm}{29.7cm}
+%\setmarginsrb{1.7cm}{1cm}{1.7cm}{3.5cm}{0pt}{0pt}{0pt}{0pt}
+%marge gauche, marge haut, marge droite, marge bas.
+\urlstyle{sf}
+
+\newcommand\ma[1]{{\color{purple}(Mario: #1)}}
+\newcommand\mk[1]{{\color{purple}#1}}
+
+\begin{document}
+
+\subjclass[2010]{Primary: 11H55, 52C07. Keywords: Iso-edge domains, Conway--Sloane conjecture, toroidal compactification}
+
+\author[C.L. Siegel]{Carl Ludwig Siegel}
+
+\author[M. D. Sikiri\'c]{Mathieu Dutour Sikiri\'c}
+\address{Mathieu Dutour Sikiri\'c, Rudjer Boskovi\'c Institute, Bijeni\v{c}ka 54, 10000 Zagreb, Croatia}
+\email{mathieu.dutour@gmail.com}
+
+\author[N. Bogachev]{Nikolay Bogachev}
+\address{University of Toronto, Canada}
+\email{nvbogach@mail.ru}
+
+
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\TT}{\ensuremath{\mathbb{T}}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{question}{Question}
+\newtheorem{claim}{Claim}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\maketitle
+
+Under the units of a quadratic form $x^T \Sigma x = \sum{k,l=1}^m s_{kl} x_k x_l$ with
+rational coefficient $s_{kl}$ we understand the matrices of those integral transformations
+$x\mapsto Cx$ of the variables $x_1$, \dots, $x_m$ which leave this quadratic form invariant,
+i.e. satisfy the matrix equation $C^T \Sigma C = \Sigma$.
+If the determinant $det \Sigma \not= 0$, then
+$det C = \pm 1$; thus $C = −1$ is also an integral matrix and the units then form a group
+under multiplication, the group of units of $\Sigma$. While for definite quadratic forms
+the unit group is always of finite order, it turns out that indefinite quadratic forms,
+with a trivial exception, always have infinitely many units.
+In the case of $m = 2$, the determination of units leads to the solution of the
+Pell equation $t^2 − D u^2 = \pm 4$, where $D = det \Sigma$. The method given by Lagrange
+for solving this equation also provides all units in the binary case. The theory
+of units of ternary indefinite quadratic forms was treated by Hermite [1], using a
+far-reaching idea that can also be used for arbitrary number of variables. However,
+Hermite’s investigations into the theory of indefinite quadratic forms left a gap that
+was only filled by a paper [2] by Stouff.
+Due to the importance of unit groups for the arithmetic of quadratic forms, for
+the theory of functions, and for general group theory, a brief coherent introduction
+to the theory of units may be desirable, as will be given in the following.
+
+\section{Fundamental domains of discontinuous groups}
+
+Let $G$ be an open domain in $h$-dimensional real Euclidean space, and let $\Gamma$ be a
+countable group of unique mappings of this domain onto itself. The group is said
+to be discontinuous in $G$ if the sequence of image points of an arbitrary point of $G$
+has no accumulation point within $G$. A subregion $F$ of $G$ shall be a fundamental
+domain of $\Gamma$ (with respect to $G$) if every point of $G$ either has exactly one image
+point within the interior of $F$, or has at least one image point on the boundary
+of $F$. An important task is to find a fundamental domain (as simple as possible)
+for a given discontinuous group. While solving this problem, it is possible to gain
+deeper insights into the properties of the group, for instance, in certain cases, the
+construct of the group from only a finite set of generators.
+
+The problem of proving the discontinuity of a group and finding a suitable fundamental
+domain can be modified as follows. Let G be uniquely mapped onto a domain $G^∗$ of Euclidean
+space of $h^*$ dimensions, where $h^*$ can also be less than $h$.
+Then, each mapping of the group $\Gamma$ corresponds to a mapping of $G^∗$ onto itself,
+which, however, may not be unique. We now assume that these mappings from
+$G^∗$ onto itself are all unique, i.e., that any two points $P$ and $Q$ of $G$, which are
+associated with the same point $P^∗ = Q^∗$ of $G^∗$, are transformed by each mapping of
+$\Gamma$ into two points $P_1$ and $Q_1$ of $G$, to which the same point $P_1^* = Q_1^*$
+of $G^*$ is again assigned. Then, a group $\Gamma^∗$ of unique mappings of the domain
+$G^∗$ onto itself arises again. All mappings from $\Gamma$, to which the identical mapping
+from $\Gamma^∗$ is assigned, form an invariant subgroup $\Gamma_0$ of $\Gamma$, and $\Gamma^*$
+is the factor group $\Gamma / \Gamma_0$. Our task can now be divided into possibly simpler
+parts: first, determine a fundamental domain $F^*$ for $\Gamma^∗$ with respect to $G^∗$,
+then the subregion $G_0$ of $G$, which corresponds to $F^*$ in $G^∗$, and finally, a
+fundamental domain $F$ for $\Gamma_0$ with respect to $G_0$. Then $F$
+is also a fundamental domain of $\Gamma$ with respect to $G$.
+
+We now consider specifically the group of unimodular substitutions $x \mapsto Ux$ of $m$
+real variables $x_1$, \dots, $x_m$ are combined into a column vector. Here, all $m$-row
+matrices $U$ with determinant $\pm 1$ and integer elements are allowed. For $m > 1$, this
+group is not discontinuous in any domain of the $m$-dimensional Euclidean space, as
+it can be easily seen that every point $x$ with rational coordinates is a fixed point
+of infinitely many matrices $U$. In order to move to a higher dimensional space in
+which the group is discontinuous, instead of a single column, we take $m$ independent
+columns $x_1$, \dots, $x_m$, and thus have a matrix $X$ with m rows and columns. The group
+$\Gamma$ of mappings $X \mapsto UX$ of the domain $G$ of the ($h = m^2$)-dimensional
+space defined by the condition $det X\not= 0$ is discontinuous; for if a sequence $U_k X$ ($k = 1, 2, \dots$)
+of unimodular matrices converges, then as a contradiction, the sequence $U_k$ itself
+would converge.
+
+To determine a fundamental domain $F$ of $\Gamma$ with respect to $G$, Minkowski [3]
+examined the domain $G^∗$ of only $h^∗ = m(m + 1)/2$ (rounded up) dimensions,
+which is given by the coefficients $h_{kl}$ ($1 \leq k \leq m$) of the symmetric matrix
+$\Phi = X X^T = (h_{kl})$. Thus, $G^∗$ is the space of coefficients of positive
+definite quadratic forms in $m$ variables. The mapping $X \mapsto UX$ of the $G$-space
+corresponds to the mapping $\Phi \mapsto U \Phi U^T$ of the $\Phi$-space, and this
+is the identity mapping only for $\pm I$, where $I$ is the identity matrix.
+Therefore, the group $\Gamma^*$ of mappings of the $\Phi$-space to be considered
+is precisely the factor group of the group $\Gamma$ in respect to the invariant
+subgroup $\Gamma_0$ generated by $I$ and $−I$, and the elements of $\Gamma^*$ are
+obtained from those of $\Gamma$ by not considering $U$ and $−U$ as different.
+For simplicity, we write $U^t \Phi U = \Phi[U]$ and say that $\Phi[U]$ is equivalent to $\Phi$).
+Thus, determining a fundamental domain for the unimodular group with respect to the $X$-space reduces
+to the appropriate selection of a representative from each class of equivalent positive
+definite quadratic forms in m variables, which is the domain of reduction theory of
+definite quadratic forms.
+
+For $m = 2$, the reduction theory was developed by Lagrange, for $m = 3$ by Seeber, and for
+arbitrary $m$ it was started by Hermite and completed by Minkowski.
+More recently, Bieberbach and J. S. Chur have given [4] a simplified representation
+of Minkowski’s reduction theory in a jointly written paper. As Minkowski showed,
+a convex corner bounded by finitely many hyperplanes can be chosen as the fundamental domain $F^*$ of $\Gamma^*$
+in the $\Phi$-space, and only finitely many image regions are adjacent to $F^*$.
+We will first derive these two important results in a somewhat
+simplified way and then generalize the second of them so that it can be used for
+further applications
+
+After the preparatory considerations for the theory of positive definite quadratic
+forms, we now turn to the actual goal of our investigation, namely, the unit theory
+of indefinite quadratic forms $x^t\Sigma x = \Sigma[x]$ with $m$ variables and rational
+coefficients.
+Let $(n, m−n)$ be the signature of $\Sigma$, i.e., let $\Sigma[x]$ be transformable by
+a real invertible linear substitution of variables into the form $y_1^2 + \dots + y_n^2 - y_{n+1}^2 - \dots - y_m^2$.
+We the consider the matrix equation
+\begin{equation*}
+\Phi \Sigma^{-1} \Phi = \Sigma
+\end{equation*}
+and require that $\Phi$ forms the matrix of a positive quadratic form. It turns out that
+these $\Phi$ yield a manifold $H$ of exactly $n(m − n)$ dimensions. If $C$ is a unit of $\Sigma$,
+i.e., $\Sigma[C] = \Sigma$, then $\Sigma^{-1} = \Sigma^{-1}[C]$ and it follows from (1) that
+\begin{equation*}
+\Phi[C] \Sigma^{-1} \Phi[C] = \Sigma.
+\end{equation*}
+Thus, $H$ is invariant under the mappings $\Phi \mapsto \Phi[C]$. It will be shown that
+the unit group of $\Sigma$ is discontinuous in the $n(m − n)$-dimensional domain $H$ and
+possesses a fundamental domain bounded by finitely many algebraic surfaces. At
+the same time, a system of finitely many generators of the unit group is found.
+
+The reduction theory of indefinite quadratic forms $\Sigma[x]$ has already been treated
+by Hermite through the introduction of the positive quadratic form $\Phi[x]$ defined by
+(1). We choose a unimodular matrix $U$ so that $\Phi[U]$ is located in the fundamental
+domain $F^*$, i.e., in the domain of reduced positive quadratic forms, and then also
+call $\Sigma[U]$ reduced. For integral $\Sigma$, Hermite stated the important theorem that
+the elements of every reduced $\Sigma[U]$ lie between bounds that depend only on the
+determinant of $\Sigma$. This theorem provides a tool for the study of the unit group of
+$\Sigma$. As the proof given by Stouff is burdened by lengthy and opaque calculations,
+the proof presented below may be more accessible.
+
+
+\section{Reduction of positive forms}
+
+A real symmetric matrix $S$ is positive, written as $S > 0$ if the quadratic form $S[x] > 0$
+is for all $x\not= 0$. Then if $\mu$ is the minimum of $S[x]$ over the sphere $x^T x = 1$
+we have $\mu > 0$ and because of the homogeneity we have
+\begin{equation*}
+S[r] \geq \mu r^t r.
+\end{equation*}
+From this it follows that $S[r]$ is ubounded on infinite sequence going to infinity.
+In particular the function $S[r]$ achieves the minimum on any such sequences.
+
+
+
+
+
+
+
+\bibliographystyle{amsplain_initials_eprint}
+\bibliography{RefIsoEdge}
+
+\end{document}
